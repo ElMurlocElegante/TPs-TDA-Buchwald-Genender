@@ -1,1 +1,2 @@
-# TP1-TDA-Buchwald-Genender
+# TPs-TDA-Buchwald-Genender
+Repositorio de Trabajos Prácticos de TDA.
