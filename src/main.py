@@ -10,9 +10,14 @@ def main():
     if juegos == None:
         print("Error: No hay juegos en el archivo dado")
         return 1
+    
+    if len(sys.argv) == 3:
+        primer_jugador = sys.argv[2]
+    else:
+        primer_jugador = "Sophia"
 
     for juego in juegos:
-        jugar(juego, sys.argv[2])
+        print(jugar(juego, primer_jugador))
 
 
 if __name__ == "__main__":
