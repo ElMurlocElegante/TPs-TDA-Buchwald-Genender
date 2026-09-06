@@ -2,6 +2,7 @@ import sys
 from validate_file import check_file
 from logic import jugar
 
+
 def main():
     argc = len(sys.argv)
     if argc < 1:
@@ -17,7 +18,10 @@ def main():
         primer_jugador = "Sophia"
 
     for juego in juegos:
-        print(jugar(juego, primer_jugador))
+        [s , m]  = jugar(juego, primer_jugador)
+        print([s,m])
+        print(sum(s))
+        print(sum(m))
 
 
 if __name__ == "__main__":

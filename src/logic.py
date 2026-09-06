@@ -18,7 +18,6 @@ def jugada_mateo(monedas: list, jugadas: list):
 
 def jugar(monedas: list, turno):
 
-
     sophia = []
     mateo = []
 
@@ -26,7 +25,9 @@ def jugar(monedas: list, turno):
     while cant != 0:
         if turno == "Sophia":
             jugada_sophia(monedas, sophia)
+            turno = "Mateo"
         else:
             jugada_mateo(monedas, mateo)
+            turno = "Sophia"
         cant -= 1
     return [sophia, mateo] 

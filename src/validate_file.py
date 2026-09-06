@@ -9,9 +9,11 @@ def check_file(file_route):
     juegos = []
     while line != "":
         monedas = line.split()
+        monedas = [int(x) for x in monedas] 
         juegos.append(monedas)
         line = file.readline()
 
     file.close()
+
 
     return juegos
