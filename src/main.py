@@ -1,6 +1,6 @@
 import sys
 from validate_file import check_file
-import logic
+from logic import jugar
 
 def main():
     argc = len(sys.argv)
@@ -10,10 +10,10 @@ def main():
     if juegos == None:
         print("Error: No hay juegos en el archivo dado")
         return 1
-    print("Todo OK")
-    print(sys.argv)
+
     for juego in juegos:
-        print(juego)
+        jugar(juego, sys.argv[2])
+
 
 if __name__ == "__main__":
     main()

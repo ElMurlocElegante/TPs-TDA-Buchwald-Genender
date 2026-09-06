@@ -1,5 +1,4 @@
 def check_file(file_route):
-    juegos = [[]]
     try:
         file = open(file_route)
     except:
@@ -7,8 +6,8 @@ def check_file(file_route):
         return None
     
     line = file.readline()
-
-    while line:
+    juegos = []
+    while line != "":
         monedas = line.split()
         juegos.append(monedas)
         line = file.readline()
