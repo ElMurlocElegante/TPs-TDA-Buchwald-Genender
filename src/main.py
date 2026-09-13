@@ -1,6 +1,6 @@
 import sys
-from validate_file import *
-from logic import jugar
+from validar_archivo import *
+from logica import jugar
 
 def imprimir_resultados(juego, primer_jugador):
     [s , m]  = jugar(juego, primer_jugador)
@@ -24,7 +24,10 @@ def main():
         print("Error: No hay juegos en el archivo dado")
         return 1
 
-    primer_jugador = detectar_jugador(sys.argv, argc)
+    primer_jugador = detectar_jugador(argc, sys.argv)
+    if primer_jugador is None:
+        print("Error: Nombre incorrecto.\nAceptados: 'Sophia' o 'Mateo'.")
+        return 1
     for i in range(0, len(juegos)):
         print(f"-----Resultados Juego {i}-----")        
         imprimir_resultados(juegos[i], primer_jugador)
