@@ -16,7 +16,7 @@ def generar_entradas(r):
 	El archivo tendrá `r` monedas, cada una con un valor entero entre 1 y 100.
 	'''
 	ruta = obtener_ruta()
-	file = open(ruta, "wb+")
+	file = open(ruta, "w+")
 	for _ in range(r):
 		moneda = random.randint(1, 100)
 		file.write(f"{moneda} ")

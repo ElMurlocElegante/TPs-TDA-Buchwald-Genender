@@ -20,7 +20,7 @@ def main():
     if argc < 1:
         return 1
     juegos = check_file(sys.argv[1])
-    if juegos == None:
+    if juegos is None:
         print("Error: No hay juegos en el archivo dado")
         return 1
 
