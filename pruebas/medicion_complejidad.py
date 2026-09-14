@@ -3,7 +3,7 @@ import os
 import sys
 import time
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+# sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 
 import matplotlib
 matplotlib.use("Agg")
@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import deque
 
-from logic import jugar
-from validate_file import check_file
+from src import jugar, check_file
+
 
 CARPETA_CASOS = "pruebas/casos"
 CARPETA_RESULTADOS = "pruebas/resultados"

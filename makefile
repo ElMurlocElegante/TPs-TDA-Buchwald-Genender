@@ -7,7 +7,7 @@ run_mateo:
 	python3 src/main.py inputs/entrada1.txt mateo
 
 pruebas:
-	python3 pruebas/pruebas.py
-	python3 pruebas/medicion_complejidad.py
+	python3 -m pruebas.generador_pruebas
+	python3 -m pruebas.medicion_complejidad
 test:
 	python3 -m pruebas.tests
