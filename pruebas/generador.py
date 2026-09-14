@@ -3,7 +3,7 @@ from pathlib import Path
 
 VALOR_MIN, VALOR_MAX = 1, 100
 
-def semilla():
+def obtener_semilla():
 	'''
 	Obtiene la semilla generadora.
 	'''
@@ -31,7 +31,7 @@ def generar_juego(m, semilla):
 	'''
 	return [semilla.randint(VALOR_MIN, VALOR_MAX) for _ in range(m)]
 
-def generar_entradas(m, l, archivo):
+def generar_entradas(m, l, archivo, semilla):
 	'''
 	Genera un archivo de entrada de testeo aleatorio.\n
 	El archivo tendrá `l` lineas, cada una con `m` monedas de un valor entero entre 1 y 100.
@@ -39,6 +39,6 @@ def generar_entradas(m, l, archivo):
 	ruta = obtener_ruta(archivo)
 	file = open(ruta, "w+")
 	for _ in range(l):
-		juego = generar_juego(m, semilla())
+		juego = generar_juego(m, semilla)
 		file.write(" ".join(str(v) for v in juego) + "\n")
 	file.close()
