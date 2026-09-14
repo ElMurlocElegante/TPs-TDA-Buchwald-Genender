@@ -9,3 +9,5 @@ run_mateo:
 pruebas:
 	python3 pruebas/pruebas.py
 	python3 pruebas/medicion_complejidad.py
+test:
+	python3 -m pruebas.tests

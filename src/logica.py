@@ -3,33 +3,31 @@ from collections import deque
 def jugada_sophia(monedas: deque, jugadas: list):
 
     if monedas[0] > monedas[-1]:
-        jugadas.append(monedas[0])
-        monedas.popleft()
+        jugadas.append(monedas.popleft())
+        
     else:
-        jugadas.append(monedas[-1])
-        monedas.pop()
-    
+        jugadas.append(monedas.pop())
+        
+        
 
 def jugada_mateo(monedas: deque, jugadas: list):
     if monedas[0] < monedas[-1]:
-        jugadas.append(monedas[0])
-        monedas.popleft()
+        jugadas.append(monedas.popleft())
+        
     else:
-        jugadas.append(monedas[-1])
-        monedas.pop()
+        jugadas.append(monedas.pop())
+        
 
-def jugar(monedas: list, turno):
+def jugar(monedas: deque, turno: str):
 
     sophia = []
     mateo = []
 
-    cant = len(monedas)
-    while cant != 0:
+    while monedas:
         if turno == "Sophia":
             jugada_sophia(monedas, sophia)
             turno = "Mateo"
         else:
             jugada_mateo(monedas, mateo)
             turno = "Sophia"
-        cant -= 1
     return [sophia, mateo] 

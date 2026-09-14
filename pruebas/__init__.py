@@ -1,0 +1,1 @@
+from .generador import generar_entradas, eliminar_entradas, obtener_ruta
