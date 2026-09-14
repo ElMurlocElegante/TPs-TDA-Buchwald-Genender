@@ -11,3 +11,6 @@ pruebas:
 	python3 -m pruebas.medicion_complejidad
 test:
 	python3 -m pruebas.tests
+
+requirements:
+	pip install -r requirements.txt

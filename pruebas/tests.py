@@ -5,7 +5,6 @@ from collections import deque
 from src import jugar, check_file
 from pruebas import generar_entradas, eliminar_entradas, obtener_ruta
 
-
 def calcular_suma(s, m):
 	'''Retorna la suma de los elemntos de `s`, y la suma de los elementos de `m`'''
 	return sum(s), sum(m)
@@ -72,10 +71,10 @@ class TestJugar(unittest.TestCase):
 class TestCheckFile(unittest.TestCase):
 
 	def setUp(self):
-		self.ruta = obtener_ruta()
+		self.ruta = obtener_ruta("caso_01.txt")
 
 	def tearDown(self):
-		eliminar_entradas()
+		eliminar_entradas("caso_01.txt")
 
 	def _escribir_archivo(self, contenido: str):
 		self.ruta.parent.mkdir(parents=True, exist_ok=True)
@@ -115,11 +114,11 @@ class TestCheckFile(unittest.TestCase):
 class TestConGeneradorAleatorio(unittest.TestCase):
 
 	def tearDown(self):
-		eliminar_entradas()
+		eliminar_entradas("caso_01.txt")
 
-	def resultado(self, n):
-		generar_entradas(n)
-		juegos = check_file(obtener_ruta())
+	def resultado(self, n, l):
+		generar_entradas(n, l, "caso_01.txt")
+		juegos = check_file(obtener_ruta("caso_01.txt"))
 		self.assertIsNotNone(juegos)
 		for monedas in juegos:
 			s, m = jugar(deque(monedas), "Sophia")
@@ -128,23 +127,23 @@ class TestConGeneradorAleatorio(unittest.TestCase):
 
 	def test_sophia_gana_con_entrada_aleatoria_000100(self):
 		'''Sophia Gana/Empata en un set de 100 monedas aleatorias'''
-		self.resultado(100)
+		self.resultado(100, 1)
 
 	def test_sophia_gana_con_entrada_aleatoria_001000(self):
 		'''Sophia Gana/Empata en un set de 1000 monedas aleatorias'''
-		self.resultado(1000)
+		self.resultado(1000, 1)
 
 	def test_sophia_gana_con_entrada_aleatoria_010000(self):
 		'''Sophia Gana/Empata en un set de 10000 monedas aleatorias'''
-		self.resultado(10000)
+		self.resultado(10000, 1)
 
 	def test_sophia_gana_con_entrada_aleatoria_050000(self):
 		'''Sophia Gana/Empata en un set de 50000 monedas aleatorias'''
-		self.resultado(50000)
+		self.resultado(50000, 1)
 
 	def test_sophia_gana_con_entrada_aleatoria_100000(self):
 		'''Sophia Gana/Empata en un set de 100000 monedas aleatorias'''
-		self.resultado(100000)
+		self.resultado(100000, 1)
 
 
 class ColorRunner(unittest.TextTestRunner):
