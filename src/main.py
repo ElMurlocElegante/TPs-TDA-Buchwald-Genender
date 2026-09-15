@@ -3,7 +3,7 @@ from validar_archivo import *
 from logica import jugar
 
 def imprimir_resultados(juego, primer_jugador):
-    [s , m]  = jugar(juego, primer_jugador)
+    [s , m]  = jugar(juego, primer_jugador , True)
     puntos_s = sum(s)
     puntos_m = sum(m)
     print(f"Sophia\n Jugadas: {s}\n Total: {puntos_s}")
@@ -30,7 +30,6 @@ def main():
         return 1
     for i in range(0, len(juegos)):
         print(f"-----Resultados Juego {i}-----")
-        print(f"Monedas: {list(juegos[i])}")
         imprimir_resultados(juegos[i], primer_jugador)
 
 

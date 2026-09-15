@@ -24,7 +24,7 @@ def medir_tiempo_promedio(juego, tiempo_minimo=TIEMPO_MINIMO_POR_MEDICION):
 	while total < tiempo_minimo:
 		copia = deque(juego)
 		inicio = time.perf_counter()
-		jugar(copia, JUGADOR_INICIAL)
+		jugar(copia, JUGADOR_INICIAL , False)
 		total += time.perf_counter() - inicio
 		iteraciones += 1
 	return (total / iteraciones) * 1000.0
