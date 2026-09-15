@@ -3,7 +3,7 @@ import unittest
 from collections import deque
 
 from src import jugar, check_file
-from pruebas import generar_entradas, eliminar_entradas, obtener_ruta
+from pruebas import generar_entradas, eliminar_entradas, obtener_ruta, obtener_semilla
 
 def calcular_suma(s, m):
 	'''Retorna la suma de los elemntos de `s`, y la suma de los elementos de `m`'''
@@ -117,7 +117,7 @@ class TestConGeneradorAleatorio(unittest.TestCase):
 		eliminar_entradas("caso_01.txt")
 
 	def resultado(self, n, l):
-		generar_entradas(n, l, "caso_01.txt")
+		generar_entradas(n, l, "caso_01.txt", obtener_semilla())
 		juegos = check_file(obtener_ruta("caso_01.txt"))
 		self.assertIsNotNone(juegos)
 		for monedas in juegos:
