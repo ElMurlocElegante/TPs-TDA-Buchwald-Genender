@@ -9,12 +9,12 @@ def obtener_semilla():
 	'''
 	return random.Random(12345)
 
-def obtener_ruta(archivo):
+def obtener_ruta(archivo: str):
 	'''
-	Obtiene la ruta absoluta para el `archivo` de entrada de testeo.
+	Obtiene la ruta absoluta para el `archivo`, situado en `pruebas/`
 	'''
 	dir_script = Path(__file__).resolve().parent
-	ruta_archivo = dir_script / f"../pruebas/casos/{archivo}"
+	ruta_archivo = dir_script / f"{archivo}"
 	ruta_archivo.parent.mkdir(parents=True, exist_ok=True)
 	return ruta_archivo
 

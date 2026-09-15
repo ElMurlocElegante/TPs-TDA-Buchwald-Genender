@@ -1,4 +1,10 @@
-.PHONY: run run_mateo pruebas
+.PHONY: run run_mateo pruebas test venv requirements
+
+venv:
+	python3 -m venv venv
+
+requirements:
+	pip install -r requirements.txt
 
 run:
 	python3 src/main.py inputs/entrada1.txt
@@ -9,8 +15,7 @@ run_mateo:
 pruebas:
 	python3 -m pruebas.generador_pruebas
 	python3 -m pruebas.medicion_complejidad
+	
 test:
 	python3 -m pruebas.tests
-
-requirements:
-	pip install -r requirements.txt
+ 

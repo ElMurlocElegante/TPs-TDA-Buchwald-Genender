@@ -5,3 +5,5 @@
 pruebas/casos/*
 pruebas/resultados/*
 inputs/test.txt
+venv/
+.ipynb_checkpoints/

@@ -71,7 +71,7 @@ class TestJugar(unittest.TestCase):
 class TestCheckFile(unittest.TestCase):
 
 	def setUp(self):
-		self.ruta = obtener_ruta("caso_01.txt")
+		self.ruta = obtener_ruta("casos/caso_01.txt")
 
 	def tearDown(self):
 		eliminar_entradas("caso_01.txt")
