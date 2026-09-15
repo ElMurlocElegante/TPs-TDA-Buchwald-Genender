@@ -16,7 +16,7 @@ JUGADOR_INICIAL = "Sophia"
 
 def medir_tiempo_promedio(juego, tiempo_minimo=TIEMPO_MINIMO_POR_MEDICION):
 	'''
-	Calcula el tiempo promedio de completar un determinado `juego`.
+	Calcula el tiempo promedio (en ms) de completar un determinado `juego`.
 	Repite el mismo juego múltiples veces hasta alcanzar el `tiempo_minimo`, calculando así el promedio de ejecución para el caso. 
 	'''
 	iteraciones = 0
@@ -27,7 +27,7 @@ def medir_tiempo_promedio(juego, tiempo_minimo=TIEMPO_MINIMO_POR_MEDICION):
 		jugar(copia, JUGADOR_INICIAL)
 		total += time.perf_counter() - inicio
 		iteraciones += 1
-	return total / iteraciones
+	return (total / iteraciones) * 1000.0
 
 
 def _rutas_casos(carpeta: str) -> list[Path]:
@@ -39,7 +39,7 @@ def _rutas_casos(carpeta: str) -> list[Path]:
 
 def _medir_archivo(archivo: Path) -> dict[int, list[float]]:
 	'''
-	Mide el tiempo promedio de cada juego en `archivo`. Devuelve {n: [tiempos]}.
+	Mide el tiempo promedio de cada juego en `archivo`. Devuelve {n: [tiempos_ms]}.
 	'''
 	tiempos = {}
 	juegos = check_file(archivo)
@@ -49,13 +49,13 @@ def _medir_archivo(archivo: Path) -> dict[int, list[float]]:
 		n = len(juego)
 		t = medir_tiempo_promedio(juego)
 		tiempos.setdefault(n, []).append(t)
-		print(f"  n={n:>6}  tiempo={t:.6e} s  archivo={archivo.name}")
+		print(f"  n={n:>6}  tiempo={t:.6f} ms  archivo={archivo.name}")
 	return tiempos
 
 
 def medir_carpeta(carpeta: str):
 	'''
-	Mide tiempos de todos los casos en `carpeta`. Devuelve (n_valores, tiempos_promedio).
+	Mide tiempos de todos los casos en `carpeta`. Devuelve (n_valores, tiempos_promedio_ms).
 	'''
 	rutas = _rutas_casos(carpeta)
 	if not rutas:
@@ -67,7 +67,7 @@ def medir_carpeta(carpeta: str):
 			tiempos_por_n.setdefault(n, []).extend(ts)
 
 	n_valores = np.array(sorted(tiempos_por_n))
-	tiempos	= np.array([np.mean(tiempos_por_n[n]) for n in n_valores])
+	tiempos = np.array([np.mean(tiempos_por_n[n]) for n in n_valores])
 	return n_valores, tiempos
 
 
@@ -93,10 +93,10 @@ def _graficar_ajuste(ax, n_valores, tiempos, coeficientes):
 	label   = f"Ajuste O(n): {coeficientes[0]:.3e}·n + {coeficientes[1]:.3e}"
 
 	ax.plot(n_valores, tiempos,  "o",  color="tab:blue", label="Medición")
-	ax.plot(n_fino,	y_ajuste, "--", color="tab:red",  label=label)
+	ax.plot(n_fino, y_ajuste, "--", color="tab:red",  label=label)
 	ax.set_title("Tiempo de ejecución de jugar() vs. cantidad de monedas")
 	ax.set_xlabel("Cantidad de monedas (n)")
-	ax.set_ylabel("Tiempo (s)")
+	ax.set_ylabel("Tiempo (ms)")
 	ax.legend()
 
 
@@ -108,7 +108,7 @@ def _graficar_error(ax, n_valores, tiempos, prediccion):
 	ax.plot(n_valores, error, "o-", color="tab:red")
 	ax.set_title("Error absoluto del ajuste O(n) por tamaño")
 	ax.set_xlabel("Cantidad de monedas (n)")
-	ax.set_ylabel("Error absoluto (s)")
+	ax.set_ylabel("Error absoluto (ms)")
 
 
 def graficar(n_valores, tiempos, coeficientes, prediccion, carpeta_salida) -> tuple[Path, Path]:
@@ -136,7 +136,7 @@ def main():
 
 	ruta = obtener_ruta(f"{CARPETA_RESULTADOS}/tiempos.csv")
 	with open(ruta, "w") as f:
-		f.write("n,tiempo_promedio_s\n")
+		f.write("n,tiempo_promedio_ms\n")
 		for n, t in zip(n_valores, tiempos):
 			f.write(f"{n},{t}\n")
 
